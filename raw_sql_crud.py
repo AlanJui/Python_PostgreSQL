@@ -1,4 +1,10 @@
-import psycopg2
+"""
+Create, Read, Update, and Delete using Raw SQL
+
+《附註》： psycopg2 套件，可以不用透過 import 先宣告，但還是得先安裝，因為 sqlalchemy 套件用得上。
+"""
+
+# import psycopg2
 from sqlalchemy import create_engine
 
 def list_all_records(table_name):
@@ -8,7 +14,6 @@ def list_all_records(table_name):
     print('=================================================\n\n')
 
 
-# db_string = 'postgres://admin:donotusethispassword@aws-us-east-1-portal.19.dblayer.com:15813/compose'
 db_string = 'postgres://my_project_user:Passw0rd@localhost:5432/my_project'
 
 db = create_engine(db_string)
@@ -17,8 +22,8 @@ db = create_engine(db_string)
 db.execute("CREATE TABLE IF NOT EXISTS films (title text, director text, year text)")
 
 # Create
-# db.execute("INSERT INTO films (title, director, year) VALUES ('Doctor Strange', 'Scott Derrickson', '2016')")
-# db.execute("INSERT INTO films (title, director, year) VALUES ('So this is Christmas', 'Celine Dion', '2011')")
+db.execute("INSERT INTO films (title, director, year) VALUES ('Doctor Strange', 'Scott Derrickson', '2016')")
+db.execute("INSERT INTO films (title, director, year) VALUES ('So this is Christmas', 'Celine Dion', '2011')")
 db.execute("INSERT INTO films (title, director, year) VALUES ('To Be Deleted', 'Alan Jui', '2017')")
 
 # Read
